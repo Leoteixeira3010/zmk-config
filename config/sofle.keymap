@@ -1,9 +1,48 @@
-adjust_layer {
-  display-name = "adjust";
-  bindings = <
-    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3     &none &none &none &none &none &none
-    &ext_power EP_TOG  &sys_reset &bootloader   &none &none                &none &none &none &none &none &none
-    &none &none &none &none &none &none                                    &none &none &none &none &none &none
-                     &none &none                                        &none &none
-  >;
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+  keymap {
+    compatible = "zmk,keymap";
+
+    /* =========================
+       LAYER 0: BASE (QWERTY)
+       ========================= */
+    default_layer {
+      display-name = "BASE";
+      bindings = <
+        &kp Q      &kp W      &kp E      &kp R      &kp T            &kp Y      &kp U      &kp I      &kp O      &kp P
+        &kp A      &kp S      &kp D      &kp F      &kp G            &kp H      &kp J      &kp K      &kp L      &kp SEMI
+        &kp Z      &kp X      &kp C      &kp V      &kp B            &kp N      &kp M      &kp COMMA  &kp DOT    &kp SLASH
+                            &mo 1     &kp SPACE                 &kp BSPC   &mo 1
+      >;
+    };
+
+    /* =========================
+       LAYER 1: FN / NAV
+       ========================= */
+    fn_layer {
+      display-name = "FN";
+      bindings = <
+        &kp ESC    &kp N1     &kp N2     &kp N3     &kp N4           &kp N5     &kp N6     &kp N7     &kp N8     &kp N9
+        &kp TAB    &kp LGUI   &kp LALT   &kp LSHFT  &kp LCTRL        &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &kp ENTER
+        &kp GRAVE  &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT         &kp PG_UP  &kp PG_DN  &kp HOME   &kp END    &kp DEL
+                            &none    &none                      &none    &none
+      >;
+    };
+
+    /* =========================
+       LAYER 2: ADJUST (BT/RESET)
+       ========================= */
+    adjust_layer {
+      display-name = "ADJ";
+      bindings = <
+        &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3     &none &none &none &none &none
+        &none          &sys_reset    &bootloader   &none         &none            &none &none &none &none &none
+        &none          &none         &none         &none         &none            &none &none &none &none &none
+                                &none  &none                       &none  &none
+      >;
+    };
+  };
 };
